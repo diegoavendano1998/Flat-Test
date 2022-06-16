@@ -11,10 +11,12 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      DB_HOST: mysql
-      DB_NAME: flask
-      DB_USER: flask
-      DB_PASSWORD: L8kbWMMTPxabkWSh
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      API_USER: ${API_USER}
+      API_PASSWORD: ${API_PASSWORD}
     volumes:
       - ./rest:/rest
     links:
@@ -36,10 +38,10 @@ services:
     ports:
       - "33006:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: L8kbWMMTPxabkWSh
-      MYSQL_DATABASE: flask
-      MYSQL_USER: flask
-      MYSQL_PASSWORD: L8kbWMMTPxabkWSh
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
 
   phpmyadmin:
     depends_on:
@@ -54,9 +56,9 @@ services:
       - "5010:80"
     environment:
       PMA_HOST: mysql
-      PMA_USER: flask
-      PMA_PASSWORD: L8kbWMMTPxabkWSh
-      MYSQL_ROOT_PASSWORD: L8kbWMMTPxabkWSh
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
 
 volumes:
   mysql-data:
