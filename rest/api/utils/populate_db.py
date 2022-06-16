@@ -47,7 +47,7 @@ def populate_properties():
         'Zopilote mojado'
     ]
     for street_name in streets:
-        name = street_name + str(random.randint(10,100))
+        name = street_name + ' ' + str(random.randint(10,100))
         category = Category.query.filter_by(name=random.choice(CATEGORIES)[0]).first()
         surface = random.randint(60,400)
         price = random.randint(600000,6000000)

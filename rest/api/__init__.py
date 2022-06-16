@@ -1,7 +1,7 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_restful import Api
+from flask_restful import Api,Resource
 
 
 import os
@@ -30,6 +30,14 @@ def create_tables():
     populate_properties()
 
 
+class Index(Resource):
+    def get(self):
+        return {"hello":"there ;)"}, 200
+api.add_resource(Index, '/')
 
 from api.rest_controller.user_controller import UserController
 api.add_resource(UserController, '/users/')
+
+
+from api.rest_controller.category_controller import category_view
+from api.rest_controller.propety_controller import property_view
